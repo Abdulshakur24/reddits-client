@@ -1,0 +1,76 @@
+.header {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  z-index: 10;
+  background: $darkBlue;
+
+  height: 68px;
+  padding: 0rem 1rem;
+  justify-content: center;
+  @include breakpoint-up(large) {
+    height: 73px;
+  }
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  .header-container {
+    display: flex;
+    width: 100%;
+    max-width: 1440px;
+    justify-content: space-between;
+    .header-flex {
+      display: flex;
+      align-items: center;
+
+      h6 {
+        margin-left: 0.5rem;
+        font-size: 1rem;
+      }
+
+      .header-round {
+        background: orangered;
+        cursor: pointer;
+        &.dark {
+          background: $black;
+        }
+        padding: 0.25rem;
+        border-radius: 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    }
+    .header-search {
+      form {
+        display: flex;
+        align-items: center;
+
+        .MuiSvgIcon-root {
+          margin-left: 1rem;
+          cursor: pointer;
+          &:hover {
+            color: rgb(255, 180, 153);
+          }
+          &:active {
+            color: orangered;
+          }
+        }
+        .MuiInputBase-root {
+          color: $white;
+          padding: 0.25rem;
+          margin-left: 1rem;
+
+          .MuiOutlinedInput-input {
+            padding: 0.25rem;
+          }
+        }
+        .MuiInput-underline::before {
+          border-bottom: 1px solid rgb(153, 153, 153);
+        }
+      }
+    }
+  }
+}

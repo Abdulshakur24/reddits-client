@@ -1,8 +1,8 @@
-import { configureStore } from '@reduxjs/toolkit';
-import counterReducer from '../features/counter/counterSlice';
+import { configureStore } from "@reduxjs/toolkit";
+import redditReducers from "../features/slicer/redditSlice";
 
 export const store = configureStore({
   reducer: {
-    counter: counterReducer,
+    reddits: redditReducers,
   },
 });

@@ -1,0 +1,12 @@
+.body {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding-top: 68px;
+  @include breakpoint-up(large) {
+    padding-top: 73px;
+  }
+
+  @import "./reddits";
+  @import "./subreddits";
+}

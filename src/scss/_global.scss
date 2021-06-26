@@ -1,0 +1,40 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html {
+  background-color: $whitesmoke;
+  font-size: 100%;
+}
+//Visibility
+.hide-for-small-mobile {
+  @include breakpoint-down(small) {
+    display: none !important;
+  }
+}
+
+.hide-for-mobile {
+  @include breakpoint-down(medium) {
+    display: none !important;
+  }
+}
+
+.hide-for-tablet {
+  @include breakpoint-down(large) {
+    display: none !important;
+  }
+}
+
+.hide-for-desktop {
+  @include breakpoint-up(large) {
+    display: none !important;
+  }
+}
+
+.hide-for-large-desktop {
+  @include breakpoint-up(large) {
+    display: none !important;
+  }
+}
