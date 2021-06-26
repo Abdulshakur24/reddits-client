@@ -20,6 +20,10 @@ function Articles({
       : Math.sign(num) * Math.abs(num);
   }
 
+  let get = () => {
+    if (!vote) return "";
+    return "red";
+  };
   return (
     <article>
       <div className={`container`}>
@@ -28,7 +32,9 @@ function Articles({
             onClick={() => setVote("green")}
             className={`icon ${vote === "green" ? "green" : ""}`}
           />
-          <p>{kFormatter(ups)}</p>
+          <p className={`${vote === "green" ? "green" : get()}`}>
+            {kFormatter(ups)}
+          </p>
           <ArrowDownwardIcon
             onClick={() => setVote("red")}
             className={`icon ${vote === "red" ? "red" : ""}`}
