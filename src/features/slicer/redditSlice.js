@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { fetchData } from "../requests/requests";
+import { includes } from "lodash";
 
 export const fetchDataAction = createAsyncThunk("reddit/fetchData", (slug) =>
   fetchData(`https://www.reddit.com${slug}`)
@@ -12,10 +13,18 @@ const redditSlice = createSlice({
     isLoading: false,
     error: false,
     searchTerm: "",
-    selectedSubreddits: "/r/pics/.json",
   },
 
-  reducers: {},
+  reducers: {
+    searchTerm: (state, action) => {
+      state.searchTerm = action.payload.string;
+      const string = action.payload.string;
+      state.posts = state.posts.filter((object, index) => {
+        if (includes(object.title, string)) return object;
+        return object;
+      });
+    },
+  },
 
   extraReducers: {
     [fetchDataAction.pending]: (state) => {
@@ -36,5 +45,5 @@ const redditSlice = createSlice({
   },
 });
 
-export const { setSearchTerm, getPosts } = redditSlice.actions;
+export const { searchTerm, getPosts } = redditSlice.actions;
 export default redditSlice.reducer;

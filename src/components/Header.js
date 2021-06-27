@@ -3,17 +3,19 @@ import RedditIcon from "@material-ui/icons/Reddit";
 import { createMuiTheme, Input, ThemeProvider } from "@material-ui/core";
 import SearchIcon from "@material-ui/icons/Search";
 import { useDispatch } from "react-redux";
-import { setSearchTerm } from "../features/slicer/redditSlice";
+import { searchTerm } from "../features/slicer/redditSlice";
 
 function Header() {
   const [input, setInput] = useState("");
   const [showModal, setShowModal] = useState(false);
   const [themeStatus, setThemeStatus] = useState(false);
+
   const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(setSearchTerm(input));
+
+    dispatch(searchTerm(input));
   };
 
   const themes = () => (themeStatus ? "#ffff" : "#ff4500");
@@ -54,7 +56,7 @@ function Header() {
                 variant="outlined"
                 onChange={(e) => setInput(e.target.value)}
               />
-              <SearchIcon onClick={handleSubmit} />
+              <SearchIcon onClick={() => dispatch(searchTerm(input))} />
             </ThemeProvider>
           </form>
         </div>
