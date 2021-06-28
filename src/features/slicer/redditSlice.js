@@ -13,16 +13,18 @@ const redditSlice = createSlice({
     isLoading: false,
     error: false,
     searchTerm: "",
+    test: [],
   },
 
   reducers: {
     searchTerm: (state, action) => {
-      state.searchTerm = action.payload.string;
-      const string = action.payload.string;
-      state.posts = state.posts.filter((object, index) => {
-        if (includes(object.title, string)) return object;
-        return object;
-      });
+      state.searchTerm = action.payload;
+      const array = [...state.posts];
+      const string = action.payload;
+      const searchObject = array.filter((object) =>
+        includes(object.title, string)
+      );
+      if (action.payload) state.posts = searchObject;
     },
   },
 

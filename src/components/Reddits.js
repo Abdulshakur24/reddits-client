@@ -6,6 +6,7 @@ import Preloader from "./Preloader";
 
 function Reddits() {
   const redditsPosts = useSelector((state) => state.reddits.posts);
+  console.log(redditsPosts);
   const isLoading = useSelector((state) => state.reddits.isLoading);
   const isError = useSelector((state) => state.reddits.error);
   console.log(redditsPosts);
