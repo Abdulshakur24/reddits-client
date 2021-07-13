@@ -13,15 +13,17 @@ function Comment({ author, permalink, created_utc, num_comments }) {
   const fetchComments = async () => {
     setPreloading(true);
     setComments([]);
+    // setShowComments(true);
 
     const response = await axios.get(`${permalink}.json`).then((data) => {
       const array = data.data;
       const popLastElement = array.pop().data.children;
       const extractsData = popLastElement.map(({ data }) => data);
       setPreloading(false);
-      setShowComments(!showComments);
+      // setShowComments(!showComments);
       return extractsData;
     });
+    setShowComments(true);
     setComments(response);
   };
 
@@ -42,33 +44,22 @@ function Comment({ author, permalink, created_utc, num_comments }) {
       </div>
       {showComments ? (
         <div>
-          {comments.length ? (
-            comments.map(({ id, body, author, created_utc }) => {
-              const paragraph = (body) => {
-                return <ReactMarkdown>{body}</ReactMarkdown>;
-              };
-              return (
-                <div className="comment" key={id}>
-                  <div className="comment-header">
-                    <h4>{author}</h4>
-                    <p>{dateContructor(created_utc)}</p>
+          {comments.length
+            ? comments.map(({ id, body, author, created_utc }) => {
+                const paragraph = (body) => {
+                  return <ReactMarkdown>{body}</ReactMarkdown>;
+                };
+                return (
+                  <div className="comment" key={id}>
+                    <div className="comment-header">
+                      <h4>{author}</h4>
+                      <p>{dateContructor(created_utc)}</p>
+                    </div>
+                    <div className="comment-paragraph">{paragraph(body)}</div>
                   </div>
-                  <div className="comment-paragraph">{paragraph(body)}</div>
-                </div>
-              );
-            })
-          ) : (
-            <h3
-              style={{
-                padding: "1rem 0",
-                textAlign: "center",
-                textDecoration: "underline",
-                color: "#FF5A5A",
-              }}
-            >
-              No comment
-            </h3>
-          )}
+                );
+              })
+            : ""}
         </div>
       ) : (
         <>{preloading ? <CommentPreloader /> : ""}</>
