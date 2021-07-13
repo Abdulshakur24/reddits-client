@@ -20,10 +20,10 @@ function Comment({ author, permalink, created_utc, num_comments }) {
       const popLastElement = array.pop().data.children;
       const extractsData = popLastElement.map(({ data }) => data);
       setPreloading(false);
-      // setShowComments(!showComments);
+      setShowComments(!showComments);
       return extractsData;
     });
-    setShowComments(true);
+
     setComments(response);
   };
 
