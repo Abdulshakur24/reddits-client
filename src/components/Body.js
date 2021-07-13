@@ -6,9 +6,11 @@ import SubReddits from "./SubReddits";
 
 function Body() {
   const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(fetchDataAction("/r/pics/.json"));
   }, [dispatch]);
+
   return (
     <div className="body">
       <Reddits />

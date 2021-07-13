@@ -6,13 +6,13 @@ import Preloader from "./Preloader";
 
 function Reddits() {
   const redditsPosts = useSelector((state) => state.reddits.posts);
-  console.log(redditsPosts);
-  const isLoading = useSelector((state) => state.reddits.isLoading);
-  const isError = useSelector((state) => state.reddits.error);
-  console.log(redditsPosts);
+  const isLoading = Boolean(useSelector((state) => state.reddits.isLoading));
+  const isError = Boolean(useSelector((state) => state.reddits.error));
+
   return (
     <div className={`reddits`}>
       {isError && <h4 className="error">Please check your connection.</h4>}
+
       {isLoading ? (
         <>
           <Preloader />

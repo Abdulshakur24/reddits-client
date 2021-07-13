@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { fetchData } from "../requests/requests";
 import { includes } from "lodash";
+import { isEmpty } from "lodash";
 
 export const fetchDataAction = createAsyncThunk("reddit/fetchData", (slug) =>
   fetchData(`https://www.reddit.com${slug}`)
@@ -12,6 +13,7 @@ const redditSlice = createSlice({
     posts: [],
     isLoading: false,
     error: false,
+    path: "",
     searchTerm: "",
     test: [],
   },
@@ -24,7 +26,8 @@ const redditSlice = createSlice({
       const searchObject = array.filter((object) =>
         includes(object.title, string)
       );
-      if (action.payload) state.posts = searchObject;
+
+      if (!isEmpty(action.payload)) state.posts = searchObject;
     },
   },
 
@@ -39,6 +42,7 @@ const redditSlice = createSlice({
       const data = action.payload.data.children;
       const posts = data.map(({ data }) => data);
       state.posts = posts;
+      state.path = action.payload;
     },
     [fetchDataAction.rejected]: (state) => {
       state.isLoading = false;

@@ -3,6 +3,7 @@ import ChatBubbleOutlineIcon from "@material-ui/icons/ChatBubbleOutline";
 import CommentPreloader from "./CommentPreloader";
 import axios from "./axios";
 import moment from "moment";
+import ReactMarkdown from "react-markdown";
 
 function Comment({ author, permalink, created_utc, num_comments }) {
   const [comments, setComments] = useState([]);
@@ -24,11 +25,13 @@ function Comment({ author, permalink, created_utc, num_comments }) {
     setComments(response);
   };
 
+  const dateContructor = (created_utc) => moment.unix(created_utc).fromNow();
+
   return (
     <div className="comments">
       <div className="bottom-comments">
         <h4>{author}</h4>
-        <p>{moment.unix(created_utc).fromNow()}</p>
+        <p>{dateContructor(created_utc)}</p>
         <div className="comments_icons">
           <ChatBubbleOutlineIcon
             className="icon-comment"
@@ -39,24 +42,33 @@ function Comment({ author, permalink, created_utc, num_comments }) {
       </div>
       {showComments ? (
         <div>
-          {comments.length
-            ? comments.map(({ id, body, author, created_utc }) => {
-                const paragraph = (body) => {
-                  return body;
-                };
-                return (
-                  <div className="comment" key={id}>
-                    <div>
-                      <h4>{author}</h4>
-                      <p>{moment.unix(created_utc).fromNow()}</p>
-                    </div>
-                    <div>
-                      <p>{paragraph(body)}</p>
-                    </div>
+          {comments.length ? (
+            comments.map(({ id, body, author, created_utc }) => {
+              const paragraph = (body) => {
+                return <ReactMarkdown>{body}</ReactMarkdown>;
+              };
+              return (
+                <div className="comment" key={id}>
+                  <div className="comment-header">
+                    <h4>{author}</h4>
+                    <p>{dateContructor(created_utc)}</p>
                   </div>
-                );
-              })
-            : ""}
+                  <div className="comment-paragraph">{paragraph(body)}</div>
+                </div>
+              );
+            })
+          ) : (
+            <h3
+              style={{
+                padding: "1rem 0",
+                textAlign: "center",
+                textDecoration: "underline",
+                color: "#FF5A5A",
+              }}
+            >
+              No comment
+            </h3>
+          )}
         </div>
       ) : (
         <>{preloading ? <CommentPreloader /> : ""}</>
