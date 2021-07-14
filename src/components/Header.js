@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import RedditIcon from "@material-ui/icons/Reddit";
 import { Input, ThemeProvider } from "@material-ui/core";
 import { createTheme } from "@material-ui/core/styles";
@@ -15,6 +15,11 @@ function Header() {
   const [themeStatus, setThemeStatus] = useState(false);
 
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (openModal) document.body.style.overflow = "hidden";
+    else document.body.style.overflow = "unset";
+  });
 
   const handleSubmit = (e) => {
     e.preventDefault();
