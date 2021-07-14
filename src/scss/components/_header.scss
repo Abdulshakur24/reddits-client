@@ -21,6 +21,7 @@
     width: 100%;
     max-width: 1440px;
     justify-content: space-between;
+
     .header-flex {
       display: flex;
       align-items: center;
@@ -43,6 +44,7 @@
         justify-content: center;
       }
     }
+
     .header-search {
       form {
         display: flex;
@@ -135,19 +137,18 @@
         padding: 1rem;
         margin: 1rem;
         width: 100%;
-        // height: 100%;
+
         justify-self: center;
         align-self: center;
         justify-content: center;
         align-content: center;
         align-items: center;
-        // max-height: 400px;
+
         max-width: 500px;
         background-color: #090c10;
         border: 1px solid #162439;
 
         .modal-header {
-          // justify-content: space-around;
           form {
             display: flex;
             align-items: center;
@@ -186,6 +187,9 @@
             width: 100%;
             border: 1px solid #162439;
             border-radius: 4px;
+            overflow-y: auto;
+            height: 20rem;
+
             button {
               cursor: pointer;
               border: none;
@@ -196,7 +200,6 @@
               background: #162439;
               color: white;
               &:focus {
-                // pointer-events: none;
                 background: #0e1825;
                 &:hover {
                   background: #0e1825;

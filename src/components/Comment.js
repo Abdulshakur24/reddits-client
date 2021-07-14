@@ -13,8 +13,8 @@ function Comment({ author, permalink, created_utc, num_comments }) {
   const fetchComments = async () => {
     setPreloading(true);
     setComments([]);
-    // setShowComments(true);
 
+    console.log(permalink);
     const response = await axios.get(`${permalink}.json`).then((data) => {
       const array = data.data;
       const popLastElement = array.pop().data.children;
@@ -49,6 +49,7 @@ function Comment({ author, permalink, created_utc, num_comments }) {
                 const paragraph = (body) => {
                   return <ReactMarkdown>{body}</ReactMarkdown>;
                 };
+
                 return (
                   <div className="comment" key={id}>
                     <div className="comment-header">

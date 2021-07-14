@@ -3,6 +3,7 @@
   max-width: 348px;
   margin-right: 1rem;
   margin-top: 1rem;
+  position: relative;
 
   @include breakpoint-down(large) {
     display: none;

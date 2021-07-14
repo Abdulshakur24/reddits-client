@@ -4,7 +4,10 @@ import { fetchDataAction } from "../features/slicer/redditSlice";
 
 function SubReddits() {
   const dispatch = useDispatch();
-  const handleFetch = async (slug) => dispatch(fetchDataAction(slug));
+  const handleFetch = async (slug) => {
+    window.scrollTo(0, 0);
+    dispatch(fetchDataAction(slug));
+  };
 
   return (
     <div className="sub-reddits">

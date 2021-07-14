@@ -7,6 +7,7 @@ import { useDispatch } from "react-redux";
 import { searchTerm } from "../features/slicer/redditSlice";
 import { fetchDataAction } from "../features/slicer/redditSlice";
 import CloseIcon from "@material-ui/icons/Close";
+
 function Header() {
   const [openModal, setModal] = useState(undefined);
   const [input, setInput] = useState("");
@@ -42,6 +43,7 @@ function Header() {
   const handleFetch = async (slug) => {
     dispatch(fetchDataAction(slug));
     setModal(false);
+    window.scrollTo(0, 0);
   };
 
   const fadeOut = () => {
