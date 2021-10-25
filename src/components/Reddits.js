@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import Articles from "./Articles";
 import { v4 as uuidv4 } from "uuid";
 import Preloader from "./Preloader";
+import Fade from "react-reveal/Fade";
 
 function Reddits() {
   const redditsPosts = useSelector((state) => state.reddits.posts);
@@ -33,19 +34,21 @@ function Reddits() {
             created_utc,
             num_comments,
           }) => (
-            <Articles
-              key={uuidv4()}
-              id={uuidv4()}
-              ups={ups}
-              downs={downs}
-              image={url}
-              title={title}
-              permalink={permalink}
-              author={author}
-              created={created}
-              created_utc={created_utc}
-              num_comments={num_comments}
-            />
+            <Fade bottom>
+              <Articles
+                key={uuidv4()}
+                id={uuidv4()}
+                ups={ups}
+                downs={downs}
+                image={url}
+                title={title}
+                permalink={permalink}
+                author={author}
+                created={created}
+                created_utc={created_utc}
+                num_comments={num_comments}
+              />
+            </Fade>
           )
         )
       )}

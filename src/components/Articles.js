@@ -14,11 +14,10 @@ function Articles({
 }) {
   const [vote, setVote] = useState(null);
 
-  function kFormatter(num) {
-    return Math.abs(num) > 999
+  const kFormatter = (num) =>
+    Math.abs(num) > 999
       ? Math.sign(num) * (Math.abs(num) / 1000).toFixed(1) + "k"
       : Math.sign(num) * Math.abs(num);
-  }
 
   let get = () => {
     if (!vote) return "";
