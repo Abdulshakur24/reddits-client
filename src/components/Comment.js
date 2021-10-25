@@ -13,6 +13,7 @@ function Comment({ author, permalink, created_utc, num_comments }) {
   const [limit, setLimit] = useState([]);
 
   const noMore = comments.length === limit.length;
+
   const showMore = () => {
     const consecutive = 5;
     let lengthOfC = comments.length;
@@ -27,6 +28,7 @@ function Comment({ author, permalink, created_utc, num_comments }) {
   const fetchComments = async () => {
     setPreloading(true);
     setComments([]);
+    setLimit([]);
 
     await axios.get(`${permalink}.json`).then((data) => {
       const array = data.data;
@@ -64,7 +66,7 @@ function Comment({ author, permalink, created_utc, num_comments }) {
       {showComments ? (
         <>
           <div>
-            {comments.length &&
+            {comments.length !== 0 &&
               limit.map(({ id, body, author, created_utc }) => {
                 const paragraph = (body) => {
                   return <ReactMarkdown>{body}</ReactMarkdown>;
@@ -89,7 +91,7 @@ function Comment({ author, permalink, created_utc, num_comments }) {
                 <button disabled={true}>No more.</button>
               ) : (
                 <button onClick={showMore}>
-                  {comments.length - limit.length} more left to show.
+                  {comments.length - limit.length} more left.
                 </button>
               )}
             </div>
