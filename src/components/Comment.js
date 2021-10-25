@@ -89,7 +89,7 @@ function Comment({ author, permalink, created_utc, num_comments }) {
                 <button disabled={true}>No more.</button>
               ) : (
                 <button onClick={showMore}>
-                  {comments.length - limit.length} Show more left.
+                  {comments.length - limit.length} more left to show.
                 </button>
               )}
             </div>
