@@ -2,7 +2,7 @@
 
 **React-Redux Codecademy Project**
 
----
+![reddit](./reddit.jpg)
 
 ## Project Requirements:
 
