@@ -136,8 +136,6 @@
         border-radius: 4px;
         padding: 1rem;
         margin: 1rem;
-        width: 100%;
-
         justify-self: center;
         align-self: center;
         justify-content: center;
@@ -166,8 +164,8 @@
             .MuiInputBase-root {
               width: 100%;
               color: $white;
-              padding: 0.25rem;
-              margin-left: 1rem;
+
+              margin: 0 1rem;
 
               .MuiOutlinedInput-input {
                 padding: 0.25rem;
@@ -184,11 +182,18 @@
           height: 100%;
 
           .sub-reddits-container {
-            width: 100%;
             border: 1px solid #162439;
             border-radius: 4px;
             overflow-y: auto;
             height: 20rem;
+            scroll-behavior: smooth;
+
+            &::-webkit-scrollbar {
+              width: 10px;
+            }
+            &::-webkit-scrollbar-thumb {
+              background: #162439;
+            }
 
             button {
               cursor: pointer;
