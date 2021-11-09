@@ -23,20 +23,22 @@ function Reddits() {
         </>
       ) : (
         redditsPosts.map(
-          ({
-            title,
-            ups,
-            downs,
-            url,
-            permalink,
-            author,
-            created,
-            created_utc,
-            num_comments,
-          }) => (
-            <Fade bottom>
+          (
+            {
+              title,
+              ups,
+              downs,
+              url,
+              permalink,
+              author,
+              created,
+              created_utc,
+              num_comments,
+            },
+            index
+          ) => (
+            <Fade key={index} bottom>
               <Articles
-                key={uuidv4()}
                 id={uuidv4()}
                 ups={ups}
                 downs={downs}

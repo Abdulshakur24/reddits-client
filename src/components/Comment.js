@@ -67,13 +67,13 @@ function Comment({ author, permalink, created_utc, num_comments }) {
         <>
           <div>
             {comments.length !== 0 &&
-              limit.map(({ id, body, author, created_utc }) => {
+              limit.map(({ id, body, author, created_utc }, index) => {
                 const paragraph = (body) => {
-                  return <ReactMarkdown>{body}</ReactMarkdown>;
+                  return <ReactMarkdown key={index}>{body}</ReactMarkdown>;
                 };
 
                 return (
-                  <Fade bottom>
+                  <Fade key={index} bottom>
                     <div className="comment" key={id}>
                       <div className="comment-header">
                         <h4>{author}</h4>
