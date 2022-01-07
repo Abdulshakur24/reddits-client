@@ -50,7 +50,6 @@ function SubReddits() {
           personalfinance
         </button>
         <button onClick={() => handleFetch("/r/movies/.json")}>movies</button>
-        <button onClick={() => handleFetch("/r/sex/.json")}>sex</button>
         <button onClick={() => handleFetch("/r/todayilearned/.json")}>
           todayilearned
         </button>
