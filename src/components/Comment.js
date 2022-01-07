@@ -99,7 +99,7 @@ function Comment({ author, permalink, created_utc, num_comments }) {
         </>
       ) : (
         <Fade bottom>
-          <>{!preloading ? <CommentPreloader /> : ""}</>
+          <>{preloading ? <CommentPreloader /> : ""}</>
         </Fade>
       )}
     </div>
